@@ -39,12 +39,4 @@ class DatabaseConnection
     {
         return $this->conn->query($sql);
     }
-
-    public function disconnect()
-    {
-        // Para PDO, no necesitas cerrar la conexión manualmente
-        // La conexión se cerrará automáticamente al final del script
-        // Pero puedes establecer la conexión a nula si deseas
-        $this->conn = null;
-    }
 }
