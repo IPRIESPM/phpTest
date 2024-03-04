@@ -2,10 +2,10 @@
 
 namespace src\Controller;
 
-include_once('Classes/Product.php');
+include_once('Model/Product.php');
 include_once('db/DatabaseConnection.php');
 
-use src\Classes\Product;
+use src\Model\Product;
 use src\db\DatabaseConnection;
 use PDO;
 use PDOException;
@@ -22,7 +22,7 @@ class ProductController
             $result = $conn->query($sql);
             if ($result->rowCount() > 0) {
                 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                    $product = new Product($row['id'], $row['codigo'], $row['nombre'], $row['precio']);
+                    $product = new Product($row['id'], $row['nombre'], $row['precio']);
                     $products[] = $product;
                 }
             }
@@ -36,10 +36,10 @@ class ProductController
     {
         $databaseConnection = DatabaseConnection::getInstance();
         $conn = $databaseConnection->getConnection();
-        $sql = "INSERT INTO productos (codigo, nombre, precio) VALUES (:codigo, :nombre, :precio)";
+        $sql = "INSERT INTO productos (id, nombre, precio) VALUES (:id, :nombre, :precio)";
         try {
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':codigo', $product->getCodigo());
+            $stmt->bindParam(':id', $product->getId());
             $stmt->bindParam(':nombre', $product->getNombre());
             $stmt->bindParam(':precio', $product->getPrecio());
             $stmt->execute();
@@ -70,10 +70,9 @@ class ProductController
     {
         $databaseConnection = DatabaseConnection::getInstance();
         $conn = $databaseConnection->getConnection();
-        $sql = "UPDATE productos SET codigo = :codigo, nombre = :nombre, precio = :precio WHERE id = :id";
+        $sql = "UPDATE productos SET nombre = :nombre, precio = :precio WHERE id = :id";
         try {
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':codigo', $product->getCodigo());
             $stmt->bindParam(':nombre', $product->getNombre());
             $stmt->bindParam(':precio', $product->getPrecio());
             $stmt->bindParam(':id', $product->getId());

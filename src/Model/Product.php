@@ -1,18 +1,16 @@
 <?php
 
-namespace src\Classes;
+namespace src\Model;
 
 class Product
 {
     private $id;
-    private $codigo;
     private $nombre;
     private $precio;
 
-    public function __construct($id, $codigo, $nombre, $precio)
+    public function __construct($id, $nombre, $precio)
     {
         $this->id = $id;
-        $this->codigo = $codigo;
         $this->nombre = $nombre;
         $this->precio = $precio;
     }
@@ -26,16 +24,6 @@ class Product
     public function setId($id)
     {
         $this->id = $id;
-    }
-
-    public function getCodigo()
-    {
-        return $this->codigo;
-    }
-
-    public function setCodigo($codigo)
-    {
-        $this->codigo = $codigo;
     }
 
     public function getNombre()
