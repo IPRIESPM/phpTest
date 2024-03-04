@@ -1,0 +1,73 @@
+version: '3'
+
+# Services
+services:
+  # Apache + PHP
+  apache_php_composer:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: 'apache_php_composer-server'
+    volumes:
+      - ./.docker/apache/php.ini:/usr/local/etc/php/php.ini
+      - ./.docker/apache/httpd.conf:/etc/apache2/conf-available/httpd.conf
+      - ./.docker/apache/sites-enabled/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
+      - ./.docker/xdebug/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ./src/:/var/www/html
+    expose:
+      - 80
+    ports:
+      - '8082:80'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    links:
+      - mysql
+    networks:
+      - tpv_cafeteria
+  mysql:
+    image: mariadb
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MARIADB_ROOT_PASSWORD: tpv_cafeteria
+      MARIADB_DATABASE: tpv_cafeteria
+      MARIADB_USER: tpv_cafeteria
+      MARIADB_PASSWORD: tpv_cafeteria
+    volumes:
+      - ./.mariadb:/var/lib/mysql:Z
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - tpv_cafeteria
+    ports:
+      - '3307:3306'
+  phpmyadmin:
+    image: phpmyadmin
+    environment:
+      MYSQL_ROOT_PASSWORD: tpv_cafeteria
+      MYSQL_USER: tpv_cafeteria
+      MYSQL_PASSWORD: tpv_cafeteria
+      PMA_HOST: tpv_cafeteria
+    ports:
+      - '8083:80'
+    links:
+      - mysql
+    networks:
+      - tpv_cafeteria
+networks:
+  tpv_cafeteria:
+    name: tpv_cafeteria
+    driver: bridge
+
+    ##Descomentar si se desea acceder con una aplicación de escritorio
+    #ports:
+      #- '3306:3306'
+# Lanzar con
+# docker-compose up -d –build
+
+# Ver los logs con
+# docker-compose logs -f
+
+# Bash: docker-compose exec apache_php_composer bash
+
+# https://www.bornfight.com/blog/blog-lamp-docker-setup-with-php-8-and-mariadb-for-symfony-projects/
+
+# https://www.cloudsavvyit.com/10528/how-to-use-docker-to-containerise-php-and-apache/
