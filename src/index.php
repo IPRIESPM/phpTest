@@ -1,21 +1,20 @@
 <?php
-include_once("db.php");
 
+include_once('Controller/ProductController.php');
 
-$databaseConnection = DatabaseConnection::getInstance();
+use src\Controller\ProductController;
 
+$productController = new ProductController();
+$products = $productController->getAllProducts();
 
-$conn = $databaseConnection->getConnection();
-
-$sql = "SELECT * FROM productos";
-$result = $databaseConnection->executeQuery($sql);
-
-
-if ($result->rowCount() > 0) {
-
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        echo "Código: " . $row["codigo"] . " - Nombre: " . $row["nombre"] . " - Precio: " . $row["precio"] . "<br>";
-    }
-} else {
-    echo "No se encontraron productos.";
+echo "<h1>Productos</h1>";
+echo "<table border='1'>";
+echo "<tr><th>Código</th><th>Nombre</th><th>Precio</th></tr>";
+foreach ($products as $product) {
+    echo "<tr>";
+    echo "<td>" . $product->getCodigo() . "</td>";
+    echo "<td>" . $product->getNombre() . "</td>";
+    echo "<td>" . $product->getPrecio() . "</td>";
+    echo "</tr>";
 }
+echo "</table>";

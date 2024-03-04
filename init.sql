@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS mesas (
 
 -- Tabla para gestionar los productos disponibles en la carta
 CREATE TABLE IF NOT EXISTS productos (
-    codigo INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     precio DECIMAL(10,2) NOT NULL
 );
@@ -20,5 +20,5 @@ CREATE TABLE IF NOT EXISTS consumiciones (
     numero_mesa INT,
     codigo_articulo INT,
     FOREIGN KEY (numero_mesa) REFERENCES mesas(numero),
-    FOREIGN KEY (codigo_articulo) REFERENCES productos(codigo)
+    FOREIGN KEY (codigo_articulo) REFERENCES productos(id)
 );

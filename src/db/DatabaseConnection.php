@@ -1,5 +1,10 @@
 <?php
 
+namespace src\db;
+
+use PDO;
+use PDOException;
+
 class DatabaseConnection
 {
     private $host = "mysql";
