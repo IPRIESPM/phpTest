@@ -53,6 +53,23 @@ if (empty($url[1])) {
                     break;
             }
             break;
+        case 'tickets':
+            if (empty($url[2])) {
+                include_once('./View/404.php');
+                break;
+            }
+            switch ($url[2]) {
+                case 'add':
+                    include_once('./View/tickets/AddTicket.php');
+                    break;
+                case 'delete':
+                    include_once('./View/tickets/DeleteTicket.php');
+                    break;
+                default:
+                    include_once('./View/404.php');
+                    break;
+            }
+            break;
         default:
             include_once('./View/404.php');
             break;

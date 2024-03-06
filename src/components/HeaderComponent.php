@@ -14,6 +14,10 @@ function HeaderComponent(string $title)
             .tui-window {
                 margin-bottom: 40px;
             }
+            .tui-button {
+                margin-bottom: 16px;
+            }
+
         </style>
     </head>
     <body style='display:grid; place-items:center; height: 100vh'>";

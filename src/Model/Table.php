@@ -28,6 +28,15 @@ class Table
         return $this->estado;
     }
 
+    public function setEstado($estado)
+    {
+        if ($estado == "Libre" || $estado == "Ocupada") {
+            $this->estado = $estado;
+        } else {
+            echo "El estado no es valido";
+        }
+    }
+
     public function changeEstado()
     {
         if ($this->estado == "Libre") {

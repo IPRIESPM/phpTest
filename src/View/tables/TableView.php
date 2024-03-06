@@ -2,55 +2,61 @@
 
 namespace src\View\tables;
 
-use src\Controller\TableController;
+use src\Controller\TicketController;
 
-include_once('Controller/TableController.php');
+include_once('Controller/TicketController.php');
 include_once('components/HeaderComponent.php');
 include_once('components/ScreenComponent.php');
 
-$tableController = new TableController();
-$tables = $tableController->getAllTables();
 
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $ticketController = new TicketController();
+    $tickets = $ticketController->getTicketsByTable($id);
+} else {
+    header('Location: /mesas');
+}
 ?>
 
-<?php HeaderComponent("Mesas"); ?>
-<?php ScreenComponent("Mesas"); ?>
+<?php HeaderComponent("Tickets"); ?>
+<?php ScreenComponent("Tickets"); ?>
 
 <div class="tui-window" style="text-align: left;">
-    <table class="tui-table striped-purple" style="width: 700px">
-        <thead>
-            <tr>
-                <th>Número</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($tables as $table) : ?>
-                <tr>
-                    <td><?php echo $table->getNumero(); ?></td>
-                    <td><?php echo $table->getEstado(); ?></td>
-                    <td style="padding-left:8px;">
-                        <a href="/mesas/edit/?id=<?= $table->getNumero() ?>">
-                            <button class="tui-button">Editar</button>
-                        </a>
-                        <a href="/mesas/delete/?id=<?= $table->getNumero() ?>">
-                            <button class="tui-button">Eliminar</button>
-                        </a>
-                        <a href="/mesas/mesa/?id=<?= $table->getNumero() ?>">
-                            <button class="tui-button">Ver</button>
-                        </a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
 
-            <?php if (empty($tables)) : ?>
+    <fieldset class="tui-fieldset">
+        <legend>
+            Tickets mesa <?= $_GET['id'] ?>
+        </legend>
+        <a style="margin-bottom:16px;" href="/tickets/add/?id=<?= $_GET['id'] ?>" class="tui-button tui-button--primary">Agregar</a>
+        <table class="tui-table striped-purple" style="width: 700px">
+
+            <thead>
                 <tr>
-                    <td colspan="3" style="text-align: center;">No hay Mesas</td>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Acciones</th>
                 </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php foreach ($tickets as $ticket) : ?>
+                    <tr>
+                        <td><?= $ticket->getProducto()->getNombre() ?></td>
+                        <td><?= $ticket->getCantidad() ?></td>
+                        <td>
+                            <a href="/tickets/delete/?id=<?= $ticket->getId() ?>&table=<?= $id ?>" class="tui-button tui-button--danger">Eliminar</a>
+                        </td>
+
+                    </tr>
+                <?php endforeach; ?>
+
+                <?php if (empty($tickets)) : ?>
+                    <tr>
+                        <td colspan="3" style="text-align: center;">No hay Tickets</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </fieldset>
 </div><br>
 
 <?php StatusBarComponent() ?>

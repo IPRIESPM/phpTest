@@ -107,4 +107,11 @@ class TableController
             return 0;
         }
     }
+
+    public function changeTableStatus($numero, $estado)
+    {
+        $table = $this->getTableByNumber($numero);
+        $table->setEstado($estado);
+        $this->updateTable($table);
+    }
 }
