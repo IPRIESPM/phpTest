@@ -18,7 +18,8 @@ CREATE TABLE IF NOT EXISTS productos (
 CREATE TABLE IF NOT EXISTS consumiciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     numero_mesa INT,
-    codigo_articulo INT,
+    codigo_producto INT,
+    cantidad INT NOT NULL,
     FOREIGN KEY (numero_mesa) REFERENCES mesas(numero),
-    FOREIGN KEY (codigo_articulo) REFERENCES productos(id)
+    FOREIGN KEY (codigo_producto) REFERENCES productos(id)
 );

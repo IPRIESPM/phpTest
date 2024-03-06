@@ -45,6 +45,9 @@ if (empty($url[1])) {
                 case 'delete':
                     include_once('./View/tables/DeleteTable.php');
                     break;
+                case 'mesa':
+                    include_once('./View/tables/TableView.php');
+                    break;
                 default:
                     include_once('./View/404.php');
                     break;
