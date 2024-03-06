@@ -47,4 +47,4 @@ if (isset($_GET["id"])) {
     </div>";
     }
 }
-StatusBarComponent()
+StatusBarComponent();
