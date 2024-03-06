@@ -38,10 +38,11 @@ class ProductController
         $conn = $databaseConnection->getConnection();
         $sql = "INSERT INTO productos ( nombre, precio) VALUES ( :nombre, :precio)";
         try {
+            $nombre = $product->getNombre();
+            $precio = $product->getPrecio();
             $stmt = $conn->prepare($sql);
-
-            $stmt->bindParam(':nombre', $product->getNombre());
-            $stmt->bindParam(':precio', $product->getPrecio());
+            $stmt->bindParam(':nombre', $nombre);
+            $stmt->bindParam(':precio', $precio);
             $stmt->execute();
             return true;
         } catch (PDOException $error) {

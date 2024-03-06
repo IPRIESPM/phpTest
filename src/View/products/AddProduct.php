@@ -7,7 +7,7 @@ use src\Controller\ProductController;
 
 include_once('components/HeaderComponent.php');
 include_once('components/ScreenComponent.php');
-include_once('models/Producto.php');
+include_once('Model/Product.php');
 include_once('Controller/ProductController.php');
 
 
@@ -23,9 +23,9 @@ if(isset($_POST['nombre']) && isset($_POST['precio'])){
 
     $productoController = new ProductController();
     $response = $productoController->addProduct($producto);
-
-    if($response){
-       echo "<div id='modal' class='tui-modal'>
+    echo $response;
+    if($response == 1){
+       echo "<div id='modal' class=''>
        <div class='tui-window red-168'>
            <fieldset class='tui-fieldset'>
                <legend class='red-255 yellow-255-text'>Alert</legend>
@@ -34,12 +34,22 @@ if(isset($_POST['nombre']) && isset($_POST['precio'])){
            </fieldset>
        </div>
    </div>";
+    } else{
+        echo "<div id='modal' class=''>
+        <div class='tui-window red-168'>
+            <fieldset class='tui-fieldset'>
+                <legend class='red-255 yellow-255-text'>Alert</legend>
+                Error
+                <button class='tui-button tui-modal-close-button right' data-modal='modal'>close</button>
+            </fieldset>
+        </div>
+    </div>";
     }}
 ?>
 
 <form action="./add" method="post">
     <span class="yellow-255-text">N</span>ombre.....:
-    <input style="width: 100px" class="tui-input" name="precio" type="text" />
+    <input style="width: 100px" class="tui-input" name="nombre"  type="text" />
     <br>
     <span class="yellow-255-text">P</span>recio.....:
     <input style="width: 100px" class="tui-input" name="precio" type="number" value="106" /><br>
