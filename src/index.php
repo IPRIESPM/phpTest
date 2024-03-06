@@ -35,6 +35,20 @@ if (empty($url[1])) {
                 include_once('./View/tables/Table.php');
                 break;
             }
+            switch ($url[2]) {
+                case 'add':
+                    include_once('./View/tables/AddTable.php');
+                    break;
+                case 'edit':
+                    include_once('./View/tables/EditTable.php');
+                    break;
+                case 'delete':
+                    include_once('./View/tables/DeleteTable.php');
+                    break;
+                default:
+                    include_once('./View/404.php');
+                    break;
+            }
             break;
         default:
             include_once('./View/404.php');

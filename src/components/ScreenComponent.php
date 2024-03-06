@@ -98,7 +98,7 @@ function ScreenComponent(string $file)
                                 </a>
                             </li>
                             <li>
-                                <a href="#!">
+                                <a href="/mesas/add">
                                     <span class="red-168-text">C</span>rear
                                     <span class="tui-shortcut">F2</span>
                                 </a>

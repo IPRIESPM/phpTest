@@ -1,9 +1,10 @@
 <?php
 
-namespace src\View\products;
+namespace src\View\tables;
+
 use src\Controller\TableController;
 
-include_once('Controller/ProductController.php');
+include_once('Controller/TableController.php');
 include_once('components/HeaderComponent.php');
 include_once('components/ScreenComponent.php');
 
