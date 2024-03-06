@@ -10,8 +10,8 @@ use src\db\DatabaseConnection;
 use PDO;
 use PDOException;
 
-class ProductController
-{
+class ProductController{
+
     public function getAllProducts()
     {
         $products = array();
@@ -31,6 +31,24 @@ class ProductController
             echo "Error al obtener los productos: " . $error->getMessage();
         }
         return $products;
+    }
+
+    public function getProductById($productId)
+    {
+        $databaseConnection = DatabaseConnection::getInstance();
+        $conn = $databaseConnection->getConnection();
+        $sql = "SELECT * FROM productos WHERE id = :id";
+        try {
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id', $productId);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $product = new Product($row['nombre'], $row['precio']);
+            $product->setId($row['id']);
+            return $product;
+        } catch (PDOException $error) {
+            echo "Error al obtener el producto: " . $error->getMessage();
+        }
     }
 
     public function addProduct(Product $product)
@@ -73,11 +91,17 @@ class ProductController
         $databaseConnection = DatabaseConnection::getInstance();
         $conn = $databaseConnection->getConnection();
         $sql = "UPDATE productos SET nombre = :nombre, precio = :precio WHERE id = :id";
+
+        $nombre = $product->getNombre();
+        $precio = $product->getPrecio();
+        $id = $product->getId();
+
+        echo $nombre . " " . $precio . " " . $id;
         try {
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':nombre', $product->getNombre());
-            $stmt->bindParam(':precio', $product->getPrecio());
-            $stmt->bindParam(':id', $product->getId());
+            $stmt->bindParam(':nombre', $nombre);
+            $stmt->bindParam(':precio', $precio);
+            $stmt->bindParam(':id', $id);
             $stmt->execute();
             return true;
         } catch (PDOException $error) {

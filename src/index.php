@@ -30,6 +30,9 @@ if (empty($url[1])) {
                     break;
             }
             break;
+        case 'tables':
+            echo "tables";
+            break;
         default:
             include_once('./View/404.php');
             break;
