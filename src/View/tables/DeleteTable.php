@@ -16,18 +16,18 @@ ScreenComponent("Eliminar Mesa");
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
 
-    $productController = new ProductController();
-    $products = $productController->deleteProduct($id);
+    $tableController = new TableController();
+    $tables = $tableController->deleteTable($id);
 
-    if ($products) {
+    if ($tables) {
         echo "<div id='modal' class=''>
         <div class='tui-window red-168'>
             <fieldset class='tui-fieldset'>
                 <legend class='red-255 yellow-255-text'> Info </legend>
-                Producto eliminado, correctamente.
-                 <a href='/productos'>
+                Mesa eliminada, correctamente.
+                 <a href='/mesas'>
                  </br>
-                <button class='tui-button tui-modal-close-button right' data-modal='modal'>Volver</button>
+                <button class='tui-button tui-modal-close-button' >Volver</button>
                 </a>
             </fieldset>
         </div>
@@ -37,8 +37,8 @@ if (isset($_GET["id"])) {
         <div class='tui-window red-168'>
             <fieldset class='tui-fieldset'>
                 <legend class='red-255 yellow-255-text'>Alert</legend>
-                No se ha podido eliminar el producto.
-                <a href='/productos'>
+                No se ha podido eliminar la mesa.
+                <a href='/mesas'>
                 </br>
                <button class='tui-button ' data-modal='modal'>Volver</button>
                </a>
@@ -47,4 +47,4 @@ if (isset($_GET["id"])) {
     </div>";
     }
 }
-StatusBarComponent()
+StatusBarComponent();

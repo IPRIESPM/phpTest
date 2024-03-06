@@ -3,7 +3,7 @@ USE tpv_cafeteria;
 
 -- Tabla para gestionar las mesas
 CREATE TABLE IF NOT EXISTS mesas (
-    numero INT AUTO_INCREMENT PRIMARY KEY,
+    numero INT  PRIMARY KEY,
     estado ENUM('LIBRE', 'OCUPADA') NOT NULL
 );
 
