@@ -92,7 +92,7 @@ function ScreenComponent(string $file)
                     <div class="tui-dropdown-content">
                         <ul>
                             <li>
-                                <a href="#!">
+                                <a href="/mesas">
                                     <span class="red-168-text">V</span>er
                                     <span class="tui-shortcut">F3</span>
                                 </a>
