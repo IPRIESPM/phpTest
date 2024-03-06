@@ -110,8 +110,8 @@ function ScreenComponent(string $file)
         </nav>
 
         <!-- Edit panel -->
-        <div class="tui-window full-width tui-no-shadow" style="margin-top: 20px;">
-            <fieldset class="tui-fieldset" style="height: 545px;">
+        <div class="tui-window full-width tui-no-shadow" style="padding-top: 26px; padding-left:8px; padding-right:8px;">
+            <fieldset class="tui-fieldset" style="height: 535px;">
                 <legend class="">&nbsp;&nbsp;&nbsp;' . $file . '.php&nbsp;</legend>
                 <span class="tui-fieldset-button"><span class="green-255-text">↕</span></span>
                 <span class="tui-fieldset-button left"><span class="green-255-text">■</span></span>
