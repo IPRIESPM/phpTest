@@ -1,12 +1,11 @@
 <?php
 
 namespace src\View\products;
+use src\Controller\ProductController;
 
 include_once('Controller/ProductController.php');
 include_once('components/HeaderComponent.php');
 include_once('components/ScreenComponent.php');
-
-use src\Controller\ProductController;
 
 $productController = new ProductController();
 $products = $productController->getAllProducts();

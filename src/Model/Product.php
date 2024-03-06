@@ -8,12 +8,13 @@ class Product
     private $nombre;
     private $precio;
 
-    public function __construct($id, $nombre, $precio)
+    public function __construct( $nombre, $precio)
     {
-        $this->id = $id;
         $this->nombre = $nombre;
         $this->precio = $precio;
     }
+
+
 
     // Métodos getters y setters
     public function getId()

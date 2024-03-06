@@ -4,29 +4,29 @@ namespace src;
 
 $url = $_SERVER['REQUEST_URI'];
 $url = explode('/', $url);
-$url = array_filter($url);
 $url = array_values($url);
 
 if (empty($url)) {
     include_once('./View/Home.php');
 } else {
-    switch ($url[0]) {
+    switch (trim($url[1])) {
         case 'productos':
-            if (empty($url[1])) {
+            if (empty($url[2])) {
                 include_once('./View/products/Product.php');
                 break;
             }
-            switch (!empty($url[1])) {
+            switch (!empty(trim($url[2]))) {
                 case 'add':
-                    include_once('./View/AddProduct.php');
+                    include_once('./View/products/AddProduct.php');
                     break;
                 case 'edit':
-                    include_once('./View/EditProduct.php');
+                    echo "edit";
                     break;
                 case 'delete':
-                    include_once('./View/DeleteProduct.php');
+                    echo "delete";
                     break;
                 default:
+                    echo "404";
                     break;
             }
             break;

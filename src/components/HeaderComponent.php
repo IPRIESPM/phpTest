@@ -7,8 +7,8 @@ function HeaderComponent(string $title)
     <head>
         <meta charset='UTF-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <link rel='stylesheet' href='./css/TuiCss/tuicss.css'>
-        <script src='./css/TuiCss/tuicss.js'></script>
+        <link rel='stylesheet' href='/css/TuiCss/tuicss.css'>
+        <script src='/css/TuiCss/tuicss.js'></script>
         <title>tpv_cafeteria - $title</title>
         <style>
             .tui-window {

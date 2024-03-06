@@ -36,10 +36,10 @@ class ProductController
     {
         $databaseConnection = DatabaseConnection::getInstance();
         $conn = $databaseConnection->getConnection();
-        $sql = "INSERT INTO productos (id, nombre, precio) VALUES (:id, :nombre, :precio)";
+        $sql = "INSERT INTO productos ( nombre, precio) VALUES ( :nombre, :precio)";
         try {
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':id', $product->getId());
+
             $stmt->bindParam(':nombre', $product->getNombre());
             $stmt->bindParam(':precio', $product->getPrecio());
             $stmt->execute();
