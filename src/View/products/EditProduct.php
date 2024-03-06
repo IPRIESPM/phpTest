@@ -36,7 +36,7 @@ if(isset($_POST['nombre']) && isset($_POST['precio'])){
                Producto Creado, correctamente.
                 <a href='/productos'>
                 </br>
-               <button class='tui-button' style='margin:12px;' data-modal='modal'>Volver</button>
+               <button class='tui-button ' style='margin:12px;' data-modal='modal'>Volver</button>
                </a>
            </fieldset>
        </div>
@@ -49,7 +49,7 @@ if(isset($_POST['nombre']) && isset($_POST['precio'])){
                 No se ha podido crear el producto.
                 <a href='/productos'>
                 </br>
-               <button class='tui-button' style='margin:12px;' data-modal='modal'>Volver</button>
+               <button class='tui-button ' style='margin:12px;' data-modal='modal'>Volver</button>
                </a>
             </fieldset>
         </div>

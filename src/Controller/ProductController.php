@@ -22,7 +22,8 @@ class ProductController
             $result = $conn->query($sql);
             if ($result->rowCount() > 0) {
                 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                    $product = new Product($row['id'], $row['nombre'], $row['precio']);
+                    $product = new Product($row['nombre'], $row['precio']);
+                    $product->setId($row['id']);
                     $products[] = $product;
                 }
             }

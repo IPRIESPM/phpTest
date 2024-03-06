@@ -33,10 +33,10 @@ $products = $productController->getAllProducts();
                     <td><?php echo $product->getNombre(); ?></td>
                     <td><?php echo $product->getPrecio() . "€"; ?></td>
                     <td style="padding-left:8px;">
-                        <a href="/productos/add=<?= $product->getId() ?>">
+                        <a href="/productos/edit/?id=<?= $product->getId() ?>">
                             <button class="tui-button">Editar</button>
                         </a>
-                        <a href="/productos/?delete=<?= $product->getId() ?>&delete">
+                        <a href="/productos/delete/?id=<?= $product->getId() ?>">
                             <button class="tui-button">Eliminar</button>
                         </a>
                     </td>

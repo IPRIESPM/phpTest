@@ -15,23 +15,23 @@ if (empty($url[1])) {
                 include_once('./View/products/Product.php');
                 break;
             }
-            switch (!empty(trim($url[2]))) {
+            switch ($url[2]) {
                 case 'add':
                     include_once('./View/products/AddProduct.php');
                     break;
                 case 'edit':
-                    echo "edit";
+                    include_once('./View/products/EditProduct.php');
                     break;
                 case 'delete':
-                    echo "delete";
+                    include_once('./View/products/DeleteProduct.php');
                     break;
                 default:
-                    echo "404";
+                    include_once('./View/404.php');
                     break;
             }
             break;
         default:
-            echo "404";
+            include_once('./View/404.php');
             break;
     }
 }
