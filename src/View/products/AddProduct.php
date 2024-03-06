@@ -23,14 +23,17 @@ if(isset($_POST['nombre']) && isset($_POST['precio'])){
 
     $productoController = new ProductController();
     $response = $productoController->addProduct($producto);
-    echo $response;
+
     if($response == 1){
        echo "<div id='modal' class=''>
        <div class='tui-window red-168'>
            <fieldset class='tui-fieldset'>
-               <legend class='red-255 yellow-255-text'>Alert</legend>
-               ...
-               <button class='tui-button tui-modal-close-button right' data-modal='modal'>close</button>
+               <legend class='red-255 yellow-255-text'> Info </legend>
+               Producto Creado, correctamente.
+                <a href='./productos'>
+                </br>
+               <button class='tui-button tui-modal-close-button right' data-modal='modal'>Volver</button>
+               </a>
            </fieldset>
        </div>
    </div>";
@@ -49,9 +52,9 @@ if(isset($_POST['nombre']) && isset($_POST['precio'])){
 
 <form action="./add" method="post">
     <span class="yellow-255-text">N</span>ombre.....:
-    <input style="width: 100px" class="tui-input" name="nombre"  type="text" />
+    <input style="width: 100px" class="tui-input" name="nombre"  type="text" require/>
     <br>
     <span class="yellow-255-text">P</span>recio.....:
-    <input style="width: 100px" class="tui-input" name="precio" type="number" value="106" /><br>
+    <input style="width: 100px" class="tui-input" name="precio" type="number" require /><br>
     <button class="tui-button" style="margin-top: 8px;" type="submit"><span class="yellow-255-text">C</span>rear</button>
 </form>

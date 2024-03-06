@@ -6,7 +6,7 @@ $url = $_SERVER['REQUEST_URI'];
 $url = explode('/', $url);
 $url = array_values($url);
 
-if (empty($url)) {
+if (empty($url[1])) {
     include_once('./View/Home.php');
 } else {
     switch (trim($url[1])) {

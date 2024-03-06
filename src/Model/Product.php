@@ -10,6 +10,12 @@ class Product
 
     public function __construct( $nombre, $precio)
     {
+        if($nombre == null){
+            return "No hay nombre";
+        }
+        if($precio == null){
+            return "No hay precio";
+        }
         $this->nombre = $nombre;
         $this->precio = $precio;
     }
@@ -29,11 +35,17 @@ class Product
 
     public function getNombre()
     {
+        if($this->nombre == null){
+            return "No hay nombre";
+        }
         return $this->nombre;
     }
 
     public function setNombre($nombre)
     {
+        if($nombre == null){
+            return "No hay nombre";
+        }
         $this->nombre = $nombre;
     }
 
