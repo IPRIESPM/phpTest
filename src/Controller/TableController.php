@@ -2,7 +2,7 @@
 
 namespace src\Controller;
 
-include_once('Model/Product.php');
+include_once('Model/Table.php');
 include_once('db/DatabaseConnection.php');
 
 use src\Model\Table;
@@ -10,9 +10,11 @@ use src\db\DatabaseConnection;
 use PDO;
 use PDOException;
 
-class TableController{
+class TableController
+{
 
-    public function getAllTables(){
+    public function getAllTables()
+    {
         $tables = array();
         $databaseConnection = DatabaseConnection::getInstance();
         $conn = $databaseConnection->getConnection();
@@ -21,8 +23,7 @@ class TableController{
             $result = $conn->query($sql);
             if ($result->rowCount() > 0) {
                 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                    $table = new Table($row['estado']);
-                    $table->setNumero($row['numero']);
+                    $table = new Table($row['numero'], $row['estado']);
                     $tables[] = $table;
                 }
             }
@@ -32,7 +33,8 @@ class TableController{
         return $tables;
     }
 
-    public function getTableByNumber($numero){
+    public function getTableByNumber($numero)
+    {
         $table = null;
         $databaseConnection = DatabaseConnection::getInstance();
         $conn = $databaseConnection->getConnection();
@@ -52,7 +54,8 @@ class TableController{
         return $table;
     }
 
-    public function updateTable($table){
+    public function updateTable($table)
+    {
         $databaseConnection = DatabaseConnection::getInstance();
         $conn = $databaseConnection->getConnection();
         $sql = "UPDATE mesas SET estado = :estado WHERE numero = :numero";
@@ -68,7 +71,8 @@ class TableController{
         }
     }
 
-    public function deleteTable($numero){
+    public function deleteTable($numero)
+    {
         $databaseConnection = DatabaseConnection::getInstance();
         $conn = $databaseConnection->getConnection();
         $sql = "DELETE FROM mesas WHERE numero = :numero";
@@ -79,6 +83,25 @@ class TableController{
             return 1;
         } catch (PDOException $error) {
             echo "Error al eliminar la mesa: " . $error->getMessage();
+            return 0;
+        }
+    }
+
+    public function addTable($table)
+    {
+        $databaseConnection = DatabaseConnection::getInstance();
+        $conn = $databaseConnection->getConnection();
+        $sql = "INSERT INTO mesas (numero, estado) VALUES (:numero, :estado)";
+        try {
+            $numero = $table->getNumero();
+            $estado = $table->getEstado();
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':numero', $numero, PDO::PARAM_INT);
+            $stmt->bindParam(':estado', $estado, PDO::PARAM_STR);
+            $stmt->execute();
+            return 1;
+        } catch (PDOException $error) {
+            echo "Error al añadir la mesa: " . $error->getMessage();
             return 0;
         }
     }

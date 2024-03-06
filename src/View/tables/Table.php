@@ -29,19 +29,19 @@ $tables = $tableController->getAllTables();
             <?php foreach ($tables as $table) : ?>
                 <tr>
                     <td><?php echo $table->getNumero(); ?></td>
-                    <td><?php echo $table->getEstado() . "€"; ?></td>
+                    <td><?php echo $table->getEstado(); ?></td>
                     <td style="padding-left:8px;">
-                        <a href="/mesas/edit/?id=<?= $product->getId() ?>">
+                        <a href="/mesas/edit/?id=<?= $table->getNumero() ?>">
                             <button class="tui-button">Editar</button>
                         </a>
-                        <a href="/mesas/delete/?id=<?= $product->getId() ?>">
+                        <a href="/mesas/delete/?id=<?= $table->getNumero() ?>">
                             <button class="tui-button">Eliminar</button>
                         </a>
                     </td>
                 </tr>
             <?php endforeach; ?>
 
-            <?php if (empty($products)) : ?>
+            <?php if (empty($tables)) : ?>
                 <tr>
                     <td colspan="3" style="text-align: center;">No hay Mesas</td>
                 </tr>

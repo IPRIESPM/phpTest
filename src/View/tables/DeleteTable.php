@@ -1,25 +1,25 @@
 <?php
 
-namespace src\View\products;
+namespace src\View\tables;
 
-use src\Controller\ProductController;
+use src\Controller\TableController;
 
 include_once('components/HeaderComponent.php');
 include_once('components/ScreenComponent.php');
-include_once('Model/Product.php');
-include_once('Controller/ProductController.php');
+include_once('Model/Table.php');
+include_once('Controller/TableController.php');
 
 
-HeaderComponent("Añadir Producto");
-ScreenComponent("NuevoProducto");
+HeaderComponent("Eliminar Mesa");
+ScreenComponent("Eliminar Mesa");
 
-if(isset($_GET["id"])){
+if (isset($_GET["id"])) {
     $id = $_GET["id"];
 
     $productController = new ProductController();
     $products = $productController->deleteProduct($id);
 
-    if($products){
+    if ($products) {
         echo "<div id='modal' class=''>
         <div class='tui-window red-168'>
             <fieldset class='tui-fieldset'>
@@ -32,7 +32,7 @@ if(isset($_GET["id"])){
             </fieldset>
         </div>
     </div>";
-    } else{
+    } else {
         echo "<div id='modal' class=''>
         <div class='tui-window red-168'>
             <fieldset class='tui-fieldset'>
@@ -48,5 +48,3 @@ if(isset($_GET["id"])){
     }
 }
 StatusBarComponent()
-?>
-

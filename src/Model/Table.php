@@ -2,27 +2,38 @@
 
 namespace src\Model;
 
-class Table{
+class Table
+{
     private $numero;
     private $estado;
 
-    public function __construct($estado){
+    public function __construct($numero, $estado = "Libre")
+    {
+        $this->numero = $numero;
         $this->estado = $estado;
     }
 
-    public function getNumero(){
+    public function getNumero()
+    {
         return $this->numero;
     }
 
-    public function setNumero($numero){
+    public function setNumero($numero)
+    {
         $this->numero = $numero;
     }
 
-    public function getEstado(){
+    public function getEstado()
+    {
         return $this->estado;
     }
 
-    public function setEstado($estado){
-        $this->estado = $estado;
+    public function changeEstado()
+    {
+        if ($this->estado == "Libre") {
+            $this->estado = "Ocupada";
+        } else {
+            $this->estado = "Libre";
+        }
     }
 }
