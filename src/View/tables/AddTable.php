@@ -37,6 +37,7 @@ if (isset($_POST['nueva'])) {
            </fieldset>
        </div>
    </div>";
+        return;
     } else {
         echo "<div id='modal' class=''>
         <div class='tui-window red-168'>
@@ -50,6 +51,7 @@ if (isset($_POST['nueva'])) {
             </fieldset>
         </div>
     </div>";
+        return;
     }
 }
 ?>

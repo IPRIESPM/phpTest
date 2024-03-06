@@ -61,8 +61,10 @@ class TableController
         $sql = "UPDATE mesas SET estado = :estado WHERE numero = :numero";
         try {
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':estado', $table->getEstado(), PDO::PARAM_STR);
-            $stmt->bindParam(':numero', $table->getNumero(), PDO::PARAM_INT);
+            $estado = $table->getEstado();
+            $numero = $table->getNumero();
+            $stmt->bindParam(':estado', $estado, PDO::PARAM_STR);
+            $stmt->bindParam(':numero', $numero, PDO::PARAM_INT);
             $stmt->execute();
             return 1;
         } catch (PDOException $error) {
