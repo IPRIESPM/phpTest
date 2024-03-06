@@ -37,6 +37,9 @@ $tables = $tableController->getAllTables();
                         <a href="/mesas/delete/?id=<?= $table->getNumero() ?>">
                             <button class="tui-button">Eliminar</button>
                         </a>
+                        <a href="/mesas/mesa/?id=<?= $table->getNumero() ?>">
+                            <button class="tui-button">Ver</button>
+                        </a>
                     </td>
                 </tr>
             <?php endforeach; ?>
