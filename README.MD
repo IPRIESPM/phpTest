@@ -11,3 +11,7 @@ docker compose -f "docker-compose.yaml" up -d --build
 para acceder a la aplicación, se debe ingresar a la siguiente url:
 
 localhost:8082
+
+## Link al repositorio
+
+[Repositorio]( https://github.com/IPRIESPM/phpTest)
